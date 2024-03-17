@@ -1,14 +1,31 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 
+import { Dropdown } from "react-bootstrap";
+
 const TaskCard = ({ task }) => {
-    const {id, name, time, assign_date, description} = task
+    const { id, name, time, assign_date, description } = task
+    
+    const handleTaskDelete = () => {
+        console.log(task.id)
+    }
     return (
         <div className="task-card">
             {/* <div className="card-header"></div> */}
             <div className="card-content">
                 <h5 className="title">{name}</h5>
                 <span className="description">{description}</span>
+                <Dropdown>
+                    <Dropdown.Toggle variant="success" id="dropdown-basic">
+                        
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                        <Dropdown.Item onClick={handleTaskDelete}>Delete</Dropdown.Item>
+                        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
             </div>
             {/* <div className="card-footer">
                 <svg className="w-6 h-6 text-red-200 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">

@@ -65,3 +65,12 @@
 .custom-button.primary{
   background-color: rgb(113, 193, 131);
 }
+
+button.dropdown-toggle{
+  background-color: rgb(255, 255, 255);
+  padding: 5px;
+}
+
+button.dropdown-toggle::after{
+  color: red;
+}
