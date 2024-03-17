@@ -1,0 +1,67 @@
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 15px;
+}
+.header .header-title{
+  font-weight: 700;
+  color: rgb(68, 68, 68);
+}
+
+.page-content{
+  padding: 20px 15px;
+}
+
+.dashboard-card{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 13px;
+  background-color: white;
+  color: rgb(47, 47, 66);
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.dashboard-card .name{
+  display: flex;
+  align-items: center;
+  gap: 0 12px;
+}
+
+.task-card{
+  display: flex;
+  flex-direction: column;
+  gap: 10px 0px;
+  background-color: white;
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.task-card .card-content{
+  padding-left: 8px;
+  border-left: 5px solid orange;
+  border-radius: 3px;
+}
+
+.task-card .card-content .title{
+  font-weight: 700;
+}
+.task-card .card-content .description{
+  color: rgb(149, 164, 179);
+  font-size: 14px;
+}
+
+.custom-button{
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 5px;
+  border: none;
+  padding: 7px 15px;
+  color: rgb(255, 255, 255);
+}
+.custom-button.primary{
+  background-color: rgb(113, 193, 131);
+}
