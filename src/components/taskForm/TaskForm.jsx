@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // TaskForm.js (example component)
 
 import { useForm } from 'react-hook-form';
@@ -41,22 +42,6 @@ const TaskForm = ({ selectedTask }) => {
 
     return (
         <>
-            {/* <form onSubmit={handleSubmit(onSubmit)}>
-                <input
-                    type="text"
-                    name="name"
-                    ref={register}
-                    defaultValue={selectedTask ? selectedTask.name : ''}
-                    placeholder="Task name"
-                />
-                <textarea
-                    name="description"
-                    ref={register}
-                    defaultValue={selectedTask ? selectedTask.description : ''}
-                    placeholder="Task description"
-                />
-                <button type="submit">{selectedTask ? 'Update Task' : 'Add Task'}</button>
-            </form> */}
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div>
                     <label htmlFor="name" className="form-label">Task Name</label>

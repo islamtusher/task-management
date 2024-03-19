@@ -2,27 +2,33 @@
 /* eslint-disable react/prop-types */
 
 import { Dropdown } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { deleteTask } from "../../features/tasks/tasksSlice"; // Import the deleteTask action
 
-const TaskCard = ({ task, handleTaskDelete }) => {
+const TaskCard = ({ task }) => {
+    const navigate = useNavigate()
+    const dispatch = useDispatch();
     const { id, name, time, assign_date, description } = task
     
+     // handle delete a task
+    const handleTaskDelete = () => {
+        dispatch(deleteTask(id));
+    }
+
     return (
         <div className="task-card">
-            {/* <div className="card-header"></div> */}
             <div className="card-content">
-                <div className="">
+                <div>
                     <h5 className="title">{name}</h5>
                     <span className="description">{description}</span>      
                 </div>
                 <Dropdown>
-                    <Dropdown.Toggle variant="success" id="dropdown-basic">
-                        
-                    </Dropdown.Toggle>
+                    <Dropdown.Toggle variant="success" id="dropdown-basic" />
 
                     <Dropdown.Menu>
-                        <Dropdown.Item onClick={handleTaskDelete}>Delete</Dropdown.Item>
-                        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                        <Dropdown.Item onClick={()=>navigate(`/edit-task/${id}`)}>Update</Dropdown.Item>
+                        <Dropdown.Item onClick={handleTaskDelete} >Delete</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
             </div>
