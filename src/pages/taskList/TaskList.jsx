@@ -12,19 +12,21 @@ const TaskList = () => {
   const navigate = useNavigate()
   const tasks = useSelector((state) => state.tasks.allTasks)
   const dispatch = useDispatch();
-  console.log(tasks)
-    // const tasks = [
-    //     {
-    //         id: '1',
-    //         name: 'This is a test item',
-    //         time: '10:00 AM',
-    //         assign_date: '10 JAN 2024',
-    //         end_date: '15 JAN 2024',
-    //         description: 'Something will testing here...',
-    //         status: 'Completed'
-    //     }
-    // ]
 
+  // const tasks = [
+  //     {
+  //         id: '1',
+  //         name: 'This is a test item',
+  //         time: '10:00 AM',
+  //         assign_date: '10 JAN 2024',
+  //         end_date: '15 JAN 2024',
+  //         description: 'Something will testing here...',
+  //         status: 'Completed'
+  //     }
+  // ]
+
+  
+  // handle delete a task
   const handleTaskDelete = (taskId) => {
     dispatch(deleteTask(taskId));
   }

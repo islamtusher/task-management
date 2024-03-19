@@ -3,6 +3,8 @@ import InputError from '../../components/inputError/InputError';
 import { useDispatch, useSelector } from 'react-redux';
 import { addTask } from '../../features/tasks/tasksSlice';
 import { useNavigate } from 'react-router-dom';
+import TopHeader from '../../components/header/TopHeader';
+import Button from '../../components/button/Button';
 
 const AddNewTask = () => {
   const navigate = useNavigate() // to navigate to the another page
@@ -31,33 +33,42 @@ const AddNewTask = () => {
       reset(); // reset the entire form
     }
   };
-    return (
-      <form onSubmit={handleSubmit(onSubmit)}>
-          <div>
-              <label htmlFor="name" className="form-label">Task Name</label>
-              <div className="input-group mb-3">
-                <input
-                  type="text"
-                  className="form-control"
-                  {...register("name", { required: 'This is required' })}
-                />
-              </div>
-              {errors?.name && <InputError message={errors.name.message} />}
-            </div>
+  return (
+    <div className="">
+      <TopHeader title='Add Tasks'>
+        <Button onClick={()=>navigate('/task-list')} type='button' className='primary'>Task List</Button>
+      </TopHeader>   
+      <div className="task-add-form">
+         <form onSubmit={handleSubmit(onSubmit)}>
             <div>
-              <label htmlFor="name" className="form-label">Description</label>
-              <div className="input-group mb-3">
-                <input
-                  type="textarea"
-                  className="form-control"
-                  {...register("description")}
-                />
+                <label htmlFor="name" className="form-label">Task Name</label>
+                <div className="input-group mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    {...register("name", { required: 'This is required' })}
+                  />
+                </div>
+                {errors?.name && <InputError message={errors.name.message} />}
               </div>
-              {errors?.description && <InputError message={errors.description.message} />}
-          </div>
-          
-          <button type="submit" className="btn btn-primary">Save</button>
-      </form>
+              <div>
+                <label htmlFor="name" className="form-label">Description</label>
+                <div className="input-group mb-3">
+                  <input
+                    type="textarea"
+                    className="form-control"
+                    {...register("description")}
+                  />
+                </div>
+                {errors?.description && <InputError message={errors.description.message} />}
+            </div>
+            
+            <button type="submit" className="btn btn-primary">Save</button>
+        </form>
+      </div>
+     
+    </div>
+     
     );
 };
 

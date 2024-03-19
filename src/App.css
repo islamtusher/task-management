@@ -80,3 +80,15 @@ button.dropdown-toggle::after{
   color: red;
 }
 
+/*///////////////////// 
+  Add New Task form page
+///////////////////////*/
+
+.task-add-form{
+  padding: 20px 15px;
+}
+.task-add-form form{
+  background-color: white;
+  padding: 15px;
+}
+
