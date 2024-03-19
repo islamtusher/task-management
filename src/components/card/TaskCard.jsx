@@ -11,8 +11,7 @@ import React from "react";
 const TaskCard = ({ task }) => {
     const navigate = useNavigate()
     const dispatch = useDispatch();
-    const { id, name, time, assign_date, description, is_complete, priority} = task
-    console.log(task)
+    const { id, name, description, is_complete, priority} = task
 
      // handle delete a task
     const handleTaskDelete = () => {
