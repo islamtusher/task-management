@@ -16,7 +16,7 @@ const UpdateTask = () => {
             <TopHeader title='Update Tasks'>
                 <Button onClick={()=>navigate('/task-list')} type='button' className='primary'>Task List</Button>
             </TopHeader>   
-            <div className="task-add-form">
+            <div className="task-add-form page-content">
                 <TaskForm selectedTask={task}/>
             </div>     
         </Fragment>

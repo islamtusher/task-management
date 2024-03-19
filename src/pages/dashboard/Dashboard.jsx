@@ -1,5 +1,6 @@
 
 
+import { Fragment } from "react";
 import DashboardCard from "../../components/card/DashboardCard";
 import TopHeader from "../../components/header/TopHeader";
 import PageContent from "../../components/pageContent/PageContent";
@@ -7,11 +8,9 @@ import PageContent from "../../components/pageContent/PageContent";
 
 const Dashboard = () => {
     return (
-        <div>
+        <Fragment>
             <header>
-                <TopHeader title='Dashboard'>
-                     
-                </TopHeader>
+                <TopHeader title='Dashboard' />
             </header>
             
             <main>
@@ -21,7 +20,7 @@ const Dashboard = () => {
             </main>
             
             <footer></footer>
-        </div>
+        </Fragment>
     );
 };
 
