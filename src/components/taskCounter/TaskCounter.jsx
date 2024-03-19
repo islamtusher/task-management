@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Dropdown } from "react-bootstrap";
-import CustomToggler from "../dropDownToggler/CustomToggler";
+import FilterToggler from "../dropDownToggler/FilterToggler";
 
 const TaskCounter = ({ tasks, handleFilter }) => {
     
@@ -11,7 +11,7 @@ const TaskCounter = ({ tasks, handleFilter }) => {
                 <span>Completed: {tasks?.filter(task => task.is_complete).length}</span>
                 {/* Filter Dropdown */}
                 <Dropdown onSelect={(evt) => handleFilter(evt)}>
-                    <Dropdown.Toggle as={CustomToggler} id="dropdown-custom-components" />
+                    <Dropdown.Toggle as={FilterToggler} id="dropdown-custom-components" />
                     <Dropdown.Menu>
                         <Dropdown.Item eventKey="low">Low</Dropdown.Item>
                         <Dropdown.Item eventKey="medium">Medium</Dropdown.Item>

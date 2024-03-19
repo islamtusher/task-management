@@ -52,31 +52,39 @@
   padding: 10px;
 }
 
-.task-card .card-content{
+.task-card .task-card-content{
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
-  /* align-items: start; */
   gap: 10px;
   padding-left: 8px;
-  border-left: 5px solid orange;
+  /* border-left: 5px solid orange; */
   border-radius: 3px;
 }
+.task-card .task-card-content .task-card-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+.task-card .task-card-content .task-card-header .badges{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
 
-.task-card .card-content.border-low{
+.task-card .task-card-content.border-low{
   border-left: 5px solid #6c757d;
 }
-.task-card .card-content.border-high{
+.task-card .task-card-content.border-high{
   border-left: 5px solid #DC3B45;
 }
-.task-card .card-content.border-medium{
+.task-card .task-card-content.border-medium{
   border-left: 5px solid #FFC23D;
 }
 
-.task-card .card-content .title{
+.task-card .task-card-content .title{
   font-weight: 700;
 }
-.task-card .card-content .description{
+.task-card .task-card-content .description{
   color: rgb(149, 164, 179);
   font-size: 14px;
 }

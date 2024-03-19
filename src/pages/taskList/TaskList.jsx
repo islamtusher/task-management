@@ -30,7 +30,6 @@ const TaskList = () => {
 
   // Handle any filter option cancellation
   const handleFilterOptionCancel = (filter) => { 
-    console.log(filter)
     const newFilters = filterOptions.filter(value => value !== filter);
     setFilterOptions(newFilters);
   }
@@ -52,24 +51,23 @@ const TaskList = () => {
         </header>
 
         <main>
-        <PageContent>
-
-          {/* task Counter */}
-          <TaskCounter tasks={tasks} handleFilter={handleFilter}  />
-          
-          {/* Selected Filter Option showing using Badges */}
-          {
-            filterOptions.length > 0 && <BadgesBox priorities={filterOptions} handleFilterOptionCancel={handleFilterOptionCancel}/>
-          }
-          
-          {/* tasks List */}
-          {
-            // if there is filtered tasks, then show them
-            filteredTasks.length > 0 ? filteredTasks?.map((task, index) => <TaskCard key={index} task={task} />)
-              :
-            // otherwise show all available tasks
-            tasks?.map((task, index) => <TaskCard key={index} task={task} />)            
-          }
+          <PageContent>
+            {/* task Counter */}
+            <TaskCounter tasks={tasks} handleFilter={handleFilter}  />
+            
+            {/* Selected Filter Option showing using Badges */}
+            {
+              filterOptions.length > 0 && <BadgesBox priorities={filterOptions} handleFilterOptionCancel={handleFilterOptionCancel}/>
+            }
+            
+            {/* tasks List */}
+            {
+              // if there is filtered tasks, then show them
+              filteredTasks.length > 0 ? filteredTasks?.map((task, index) => <TaskCard key={index} task={task} />)
+                :
+              // otherwise show all available tasks
+              tasks?.map((task, index) => <TaskCard key={index} task={task} />)            
+            }
           </PageContent>
         </main> 
       </Fragment>
