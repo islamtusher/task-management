@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { deleteTask, toggleTaskCompletion } from "../../features/tasks/tasksSlice"; // Import the deleteTask action
 import React from "react";
+import CustomBadge from "../badge/CustomBadge";
 
 
 const TaskCard = ({ task }) => {
@@ -36,18 +37,13 @@ const TaskCard = ({ task }) => {
                     {/* Task Is Complete or not Badge */}
                     {
                         is_complete ?
-                            <Badge bg="success" text="light">  Complete </Badge>
-                            :
-                            <Badge bg="warning" text="dark">  Incomplete </Badge>                                                
+                            <CustomBadge property='complete'/>
+                            : 
+                            <CustomBadge property='incomplete'/>
                     }
                     {/* Task Priority Badge */}
                     {
-                        priority === 'low' ? 
-                            <Badge bg="secondary" text="light"> Low </Badge>
-                            : priority === 'medium' ?
-                            <Badge bg="warning" text="dark"> Medium </Badge>
-                            : priority === 'high' && 
-                            <Badge bg="danger" text="light"> High </Badge>
+                        priority && <CustomBadge property={priority} />
                     } 
                 </div>   
                 

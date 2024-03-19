@@ -31,6 +31,8 @@ const TaskList = () => {
   // Handle any filter option cancellation
   const handleFilterOptionCancel = (filter) => { 
     console.log(filter)
+    const newFilters = filterOptions.filter(value => value !== filter);
+    setFilterOptions(newFilters);
   }
 
   // update the filter tasks based on selected filters changes
