@@ -6,6 +6,8 @@ import PageContent from "../../components/pageContent/PageContent";
 import Button from "../../components/button/Button";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux"; 
+import TaskCounter from "../../components/taskCounter/TaskCounter";
+import { Fragment } from "react";
 
 const TaskList = () => {
   const navigate = useNavigate()
@@ -22,12 +24,12 @@ const TaskList = () => {
   //         status: 'Completed'
   //     }
   // ]
-
+  console.log(tasks)
   
  
 
   return (
-      <div>
+      <Fragment>
         <header>
           <TopHeader title='Tasks'>
             <Button onClick={()=>navigate('/add-task')} type='button' className='primary'>Add Task</Button>
@@ -35,13 +37,18 @@ const TaskList = () => {
         </header>
 
         <main>
-          <PageContent>
-            {
-              tasks?.map((task, index) => <TaskCard key={index} task={task} />)            
-            }
+        <PageContent>
+
+          {/* task Counter */}
+          <TaskCounter tasks={tasks} />
+          
+          {/* tasks List */}
+          {
+            tasks?.map((task, index) => <TaskCard key={index} task={task} />)            
+          }
           </PageContent>
         </main> 
-      </div>
+      </Fragment>
   );
 };
 

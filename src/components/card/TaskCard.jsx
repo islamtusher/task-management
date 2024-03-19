@@ -5,6 +5,8 @@ import { Badge, Dropdown } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { deleteTask } from "../../features/tasks/tasksSlice"; // Import the deleteTask action
+import React from "react";
+
 
 const TaskCard = ({ task }) => {
     const navigate = useNavigate()
@@ -20,7 +22,8 @@ const TaskCard = ({ task }) => {
     return (
         <div className="task-card">
             
-            <div className="card-content">
+            <div
+                className={`card-content ${priority === 'low' ? 'border-low' : priority === 'high' ? 'border-high': 'medium'}`}>
                 <div className="d-flex" style={{gap:'5px'}}>
                     {
                         is_complete ?
@@ -33,9 +36,9 @@ const TaskCard = ({ task }) => {
                         priority === 'low' ? 
                             <Badge bg="secondary" text="light"> Low </Badge>
                             : priority === 'medium' ?
-                            <Badge bg="warning" text="dark"> Medium/ </Badge>
-                            : priority === 'danger' && 
-                            <Badge bg="danger" text="dark"> Danger </Badge>
+                            <Badge bg="warning" text="dark"> Medium </Badge>
+                            : priority === 'high' && 
+                            <Badge bg="danger" text="light"> High </Badge>
                     } 
                 </div>    
                 <div>

@@ -25,10 +25,10 @@ const TaskForm = ({ selectedTask }) => {
         if (selectedTask) {// If selectedTask exists, Then edit operation
             dispatch(updateTask({ id: selectedTask.id, updatedTask : data })); // Dispatch updateTask action
         } else {
+            // console.log(data)
             const newTask = {
                 id: Math.random().toString(36).substr(2, 9), // giving a unique id
                 ...data,
-                priority: 'low',
             };
             dispatch(addTask(newTask)); // Dispatch addTask action
                        
@@ -64,14 +64,43 @@ const TaskForm = ({ selectedTask }) => {
                     </div>
                     {errors?.description && <InputError message={errors.description.message} />}
                 </div>
-                <div className='d-flex align-items-center'>    
-                    <input
-                        type="checkbox"
-                        defaultValue={selectedTask ? selectedTask.is_complete : ''}
-                        {...register("is_complete")}
-                    />
-                    <label htmlFor="is_complete" className="form-label m-0 ms-1">Is Complete</label>
-                    {errors?.is_complete && <InputError message={errors.is_complete.message} />}
+                <div className='d-flex align-items-center' style={{gap:'15px', fontSize:'13px'}}>
+                    <div className='d-flex align-items-center'>    
+                        <input
+                            type="checkbox"
+                            defaultValue={selectedTask ? selectedTask.is_complete : ''}
+                            {...register("is_complete")}
+                        />
+                        <label htmlFor="is_complete" className="form-label m-0 ms-1">Complete</label>
+                        {errors?.is_complete && <InputError message={errors.is_complete.message} />}
+                    </div>               
+                    <div className='d-flex align-items-center'>    
+                        <input
+                            type="radio"
+                            defaultValue={selectedTask ? selectedTask.priority : 'low'}
+                            {...register("priority")}
+                        />                        
+                        {errors?.priority && <InputError message={errors.priority.message} />}
+                        <label htmlFor="priority" className="form-label m-0 ms-1">Low</label>
+                    </div>
+                    <div className='d-flex align-items-center'>    
+                        <input
+                            type="radio"
+                            defaultValue={selectedTask ? selectedTask.priority : 'high'}
+                            {...register("priority")}
+                        />              
+                        <label htmlFor="priority" className="form-label m-0 ms-1">High</label>
+                        {errors?.priority && <InputError message={errors.priority.message} />}
+                    </div>
+                    <div className='d-flex align-items-center'>    
+                        <input
+                            type="radio"
+                            defaultValue={selectedTask ? selectedTask.priority : 'medium'}
+                            {...register("priority")}
+                        />              
+                        <label htmlFor="priority" className="form-label m-0 ms-1">Medium</label>
+                        {errors?.priority && <InputError message={errors.priority.message} />}
+                    </div>
                 </div>
                 
                 <button type="submit" className="btn btn-primary">Save</button>
