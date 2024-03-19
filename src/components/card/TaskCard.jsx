@@ -4,7 +4,7 @@
 import { Badge, Dropdown } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { deleteTask } from "../../features/tasks/tasksSlice"; // Import the deleteTask action
+import { deleteTask, toggleTaskCompletion } from "../../features/tasks/tasksSlice"; // Import the deleteTask action
 import React from "react";
 
 
@@ -19,19 +19,29 @@ const TaskCard = ({ task }) => {
         dispatch(deleteTask(id));
     }
 
+    const handleCheckboxChange = () => {
+        // Toggle the is_complete property of the task and dispatch the action
+        dispatch(toggleTaskCompletion(task.id));
+    };
+
     return (
-        <div className="task-card">
-            
-            <div
-                className={`card-content ${priority === 'low' ? 'border-low' : priority === 'high' ? 'border-high': 'medium'}`}>
-                <div className="d-flex" style={{gap:'5px'}}>
+        <div className="task-card">            
+            <div className={`card-content ${priority === 'low' ? 'border-low' : priority === 'high' ? 'border-high': 'medium'}`}>
+                <div className="d-flex align-items-center" style={{ gap: '5px' }}>                      
+                   {/* Task is Complete or not Toggler */}
+                    <input
+                        type="checkbox"
+                        checked={task.is_complete}
+                        onChange={handleCheckboxChange}
+                    />
+                    {/* Task Is Complete or not Badge */}
                     {
                         is_complete ?
                             <Badge bg="success" text="light">  Complete </Badge>
                             :
                             <Badge bg="warning" text="dark">  Incomplete </Badge>                                                
                     }
-
+                    {/* Task Priority Badge */}
                     {
                         priority === 'low' ? 
                             <Badge bg="secondary" text="light"> Low </Badge>
@@ -40,7 +50,9 @@ const TaskCard = ({ task }) => {
                             : priority === 'high' && 
                             <Badge bg="danger" text="light"> High </Badge>
                     } 
-                </div>    
+                </div>   
+                
+                {/* Task Details */}
                 <div>
                     <h6 className="title">{name}</h6>
                     <span className="description">{description}</span>   

@@ -103,7 +103,7 @@ const TaskForm = ({ selectedTask }) => {
                     </div>
                 </div>
                 
-                <button type="submit" className="btn btn-primary">Save</button>
+                <button type="submit" className="btn btn-primary mt-3">Save</button>
             </form>
         </>
         
