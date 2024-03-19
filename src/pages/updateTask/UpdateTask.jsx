@@ -10,7 +10,7 @@ const UpdateTask = () => {
     const { id } = useParams(); // Extract taskId parameter from URL
     const task = useSelector(state => state.tasks.allTasks.find(task => task.id === id));
     
-    console.log(task)
+    // console.log(task)
     return (
         <Fragment>
             <TopHeader title='Update Tasks'>

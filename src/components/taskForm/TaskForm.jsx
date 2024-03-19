@@ -9,35 +9,32 @@ import { addTask, updateTask } from '../../features/tasks/tasksSlice'; // Import
 
 const TaskForm = ({ selectedTask }) => {
     const navigate = useNavigate() // to navigate to the another page
+    const dispatch = useDispatch();
+
     const {
       register,
       handleSubmit,
       formState: { errors },
       reset
-    } = useForm() // to handle form submission
-    
-    const dispatch = useDispatch();
+    } = useForm() // to handle form submission    
 
     const onSubmit = (data) => {
         if (!data.name) return; // Prevent submission if task name is empty    
-        const { name, description } = data // destructured the data object
+        // const { name, description, is_completed } = data // destructured the data object
 
-        if (selectedTask) {
-            // If selectedTask exists, Then edit operation
-            dispatch(updateTask({ id: selectedTask.id, ...data })); // Dispatch updateTask action
+        if (selectedTask) {// If selectedTask exists, Then edit operation
+            dispatch(updateTask({ id: selectedTask.id, updatedTask : data })); // Dispatch updateTask action
         } else {
             const newTask = {
                 id: Math.random().toString(36).substr(2, 9), // giving a unique id
-                name: name,
-                description: description,
-                completed: false,
+                ...data,
+                priority: 'low',
             };
             dispatch(addTask(newTask)); // Dispatch addTask action
-            navigate('/task-list') // once the new task added navigate            
+                       
         }
-
-        // Reset form after submission
-        reset();
+        navigate('/task-list') // once the new task added navigate     
+        reset(); // Reset form after submission
     };
 
     return (
@@ -66,6 +63,15 @@ const TaskForm = ({ selectedTask }) => {
                     />
                     </div>
                     {errors?.description && <InputError message={errors.description.message} />}
+                </div>
+                <div className='d-flex align-items-center'>    
+                    <input
+                        type="checkbox"
+                        defaultValue={selectedTask ? selectedTask.is_complete : ''}
+                        {...register("is_complete")}
+                    />
+                    <label htmlFor="is_complete" className="form-label m-0 ms-1">Is Complete</label>
+                    {errors?.is_complete && <InputError message={errors.is_complete.message} />}
                 </div>
                 
                 <button type="submit" className="btn btn-primary">Save</button>

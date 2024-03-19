@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 const TaskList = () => {
   const navigate = useNavigate()
   const tasks = useSelector((state) => state.tasks.allTasks)
- 
+  
   // const tasks = [
   //     {
   //         id: '1',
