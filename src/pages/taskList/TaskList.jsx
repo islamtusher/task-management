@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 
 import TaskCard from "../../components/card/TaskCard";
@@ -8,6 +9,7 @@ import TaskCounter from "../../components/taskCounter/TaskCounter";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux"; 
 import { Fragment, useEffect, useState } from "react";
+import BadgesBox from "../../components/badgesBox/BadgesBox";
 
 const TaskList = () => {
   const navigate = useNavigate() // will use for navigate to a page
@@ -16,6 +18,7 @@ const TaskList = () => {
   const [filterOptions, setFilterOptions] = useState([]); // storing the selected filter options
   const [filteredTasks, setFilteredTasks] = useState([]); // storing the filtered tasks 
 
+  // Handle any filter option selected
   const handleFilter = (filter) => {        
     let preFilters = [...filterOptions]
     // Check if the filter is not in the array and insert it
@@ -23,6 +26,11 @@ const TaskList = () => {
         preFilters.push(filter)
       setFilterOptions(preFilters)
     }
+  }
+
+  // Handle any filter option cancellation
+  const handleFilterOptionCancel = (filter) => { 
+    console.log(filter)
   }
 
   // update the filter tasks based on selected filters changes
@@ -45,7 +53,12 @@ const TaskList = () => {
         <PageContent>
 
           {/* task Counter */}
-          <TaskCounter tasks={tasks} handleFilter={handleFilter}/>
+          <TaskCounter tasks={tasks} handleFilter={handleFilter}  />
+          
+          {/* Selected Filter Option showing using Badges */}
+          {
+            filterOptions.length > 0 && <BadgesBox priorities={filterOptions} handleFilterOptionCancel={handleFilterOptionCancel}/>
+          }
           
           {/* tasks List */}
           {
