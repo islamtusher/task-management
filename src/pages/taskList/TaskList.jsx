@@ -12,22 +12,9 @@ import { Fragment } from "react";
 const TaskList = () => {
   const navigate = useNavigate()
   const tasks = useSelector((state) => state.tasks.allTasks)
-  
-  // const tasks = [
-  //     {
-  //         id: '1',
-  //         name: 'This is a test item',
-  //         time: '10:00 AM',
-  //         assign_date: '10 JAN 2024',
-  //         end_date: '15 JAN 2024',
-  //         description: 'Something will testing here...',
-  //         status: 'Completed'
-  //     }
-  // ]
+
   console.log(tasks)
   
- 
-
   return (
       <Fragment>
         <header>

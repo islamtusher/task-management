@@ -1,11 +1,9 @@
 /* eslint-disable react/prop-types */
 
-
-
-const PageContent = ({children}) => {
+const PageContent = ({ children }) => {
     return (
         <div className="page-content">
-            {children}
+            {children}             
         </div>
     );
 };
