@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 
-import { Badge, Dropdown } from "react-bootstrap";
+import { Dropdown } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { deleteTask, toggleTaskCompletion } from "../../features/tasks/tasksSlice"; // Import the deleteTask action
@@ -33,7 +33,7 @@ const TaskCard = ({ task }) => {
                         {/* Task is Complete or not Toggler */}
                         <input
                             type="checkbox"
-                            checked={task.is_complete}
+                            checked={task?.is_complete ? true : false}
                             onChange={handleCheckboxChange}
                         />
                      
@@ -47,7 +47,8 @@ const TaskCard = ({ task }) => {
                         {   // Task Priority Badge
                             priority && <CustomBadge property={priority} />
                         } 
-                   </div>
+                    </div>
+                    {/* task actions dropdown */}
                     <Dropdown>
                         <Dropdown.Toggle as={ActionToggler} id="dropdown-basic" />
                         <Dropdown.Menu>

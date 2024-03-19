@@ -6,21 +6,24 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import InputError from '../inputError/InputError';
 import { addTask, updateTask } from '../../features/tasks/tasksSlice'; // Import the addTask and updateTask actions
+import { useState } from 'react';
 
 const TaskForm = ({ selectedTask }) => {
     const navigate = useNavigate() // to navigate to the another page
     const dispatch = useDispatch();
+    const [isComplete, setIsComplete] = useState(selectedTask?.is_complete)
+    const [defaultPriority, setDefaultPriority] = useState(selectedTask?.priority)
 
     const {
       register,
       handleSubmit,
       formState: { errors },
       reset
-    } = useForm() // to handle form submission    
+    } = useForm() // to handle form submission   
+
 
     const onSubmit = (data) => {
         if (!data.name) return; // Prevent submission if task name is empty    
-        // const { name, description, is_completed } = data // destructured the data object
 
         if (selectedTask) {// If selectedTask exists, Then edit operation
             dispatch(updateTask({ id: selectedTask.id, updatedTask : data })); // Dispatch updateTask action
@@ -30,13 +33,11 @@ const TaskForm = ({ selectedTask }) => {
                 id: Math.random().toString(36).substr(2, 9), // giving a unique id
                 ...data,
             };
-            dispatch(addTask(newTask)); // Dispatch addTask action
-                       
+            dispatch(addTask(newTask)); // Dispatch addTask action                   
         }
         navigate('/task-list') // once the new task added navigate     
         reset(); // Reset form after submission
     };
-
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -68,17 +69,23 @@ const TaskForm = ({ selectedTask }) => {
                     <div className='d-flex align-items-center'>    
                         <input
                             type="checkbox"
-                            defaultValue={selectedTask ? selectedTask.is_complete : ''}
-                            {...register("is_complete")}
+                            defaultValue={isComplete}
+                            checked={isComplete ? true : false}
+                            {...register("is_complete", {
+                                onChange: ()=> setIsComplete(!isComplete)
+                            })}
                         />
                         <label htmlFor="is_complete" className="form-label m-0 ms-1">Complete</label>
                         {errors?.is_complete && <InputError message={errors.is_complete.message} />}
-                    </div>               
+                    </div>   
                     <div className='d-flex align-items-center'>    
                         <input
                             type="radio"
-                            defaultValue={selectedTask ? selectedTask.priority : 'low'}
-                            {...register("priority")}
+                            defaultValue={'low'}
+                            {...register("priority", {
+                                onChange : () => setDefaultPriority('low')
+                            })}
+                            defaultChecked={defaultPriority === 'low'} // Check if priority is 'low'                         
                         />                        
                         {errors?.priority && <InputError message={errors.priority.message} />}
                         <label htmlFor="priority" className="form-label m-0 ms-1">Low</label>
@@ -86,8 +93,11 @@ const TaskForm = ({ selectedTask }) => {
                     <div className='d-flex align-items-center'>    
                         <input
                             type="radio"
-                            defaultValue={selectedTask ? selectedTask.priority : 'high'}
-                            {...register("priority")}
+                            defaultValue={'high'}
+                            {...register("priority", {
+                                onChange : () => setDefaultPriority('high')
+                            })}
+                            defaultChecked={defaultPriority === 'high'} // Check if priority is 'high'
                         />              
                         <label htmlFor="priority" className="form-label m-0 ms-1">High</label>
                         {errors?.priority && <InputError message={errors.priority.message} />}
@@ -95,12 +105,16 @@ const TaskForm = ({ selectedTask }) => {
                     <div className='d-flex align-items-center'>    
                         <input
                             type="radio"
-                            defaultValue={selectedTask ? selectedTask.priority : 'medium'}
-                            {...register("priority")}
+                            defaultValue={'medium'}
+                            {...register("priority", {
+                                onChange : () => setDefaultPriority('medium')
+                            })}
+                            defaultChecked={defaultPriority === 'medium'} // Check if priority is 'medium'
                         />              
                         <label htmlFor="priority" className="form-label m-0 ms-1">Medium</label>
                         {errors?.priority && <InputError message={errors.priority.message} />}
                     </div>
+
                 </div>
                 
                 <button type="submit" className="btn btn-primary mt-3">Save</button>
