@@ -3,18 +3,17 @@
 
 import { Dropdown } from "react-bootstrap";
 
-const TaskCard = ({ task }) => {
+const TaskCard = ({ task, handleTaskDelete }) => {
     const { id, name, time, assign_date, description } = task
     
-    const handleTaskDelete = () => {
-        console.log(task.id)
-    }
     return (
         <div className="task-card">
             {/* <div className="card-header"></div> */}
             <div className="card-content">
-                <h5 className="title">{name}</h5>
-                <span className="description">{description}</span>
+                <div className="">
+                    <h5 className="title">{name}</h5>
+                    <span className="description">{description}</span>      
+                </div>
                 <Dropdown>
                     <Dropdown.Toggle variant="success" id="dropdown-basic">
                         
